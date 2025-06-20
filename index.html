@@ -4,129 +4,161 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spunch Sanitary Ware Catalogue</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #d1ecf1, #e0f7fa);
-      color: #2c3e50;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #e3f2fd, #f3fafe);
+      color: #1a237e;
       line-height: 1.6;
     }
+
     header {
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      background: linear-gradient(to right, #0d47a1, #1976d2);
       color: white;
-      padding: 1rem 5vw;
+      padding: 1.5rem 5vw;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     }
+
     header h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: 1px;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      letter-spacing: 1.2px;
     }
+
+    header::after {
+      content: 'Premium Sanitary Ware That Speaks Luxury';
+      display: block;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      margin-top: 0.4rem;
+      color: #bbdefb;
+    }
+
     nav a {
       color: white;
       text-decoration: none;
-      margin-left: 1.2rem;
+      margin-left: 1.5rem;
       font-size: 1rem;
       transition: color 0.3s ease;
     }
+
     nav a:hover {
-      color: #00bcd4;
+      color: #ffe082;
+    }
+
+    .search-container {
+      text-align: center;
+      padding: 2rem 1rem 0;
+    }
+
+    #searchInput {
+      width: 60%;
+      max-width: 400px;
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      border-radius: 30px;
+      border: 2px solid #1976d2;
+      box-shadow: 0 4px 8px rgba(21, 101, 192, 0.2);
+      outline: none;
+      transition: 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    #searchInput:focus {
+      border-color: #0d47a1;
+      box-shadow: 0 0 10px rgba(33, 150, 243, 0.3);
     }
 
     .catalogue {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 1.2rem;
+      gap: 1.5rem;
       padding: 2rem 4vw;
-      justify-content: center;
-    }
-    @media (max-width: 600px) {
-      .catalogue {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-      }
     }
 
     .product {
-      background: linear-gradient(135deg, rgba(225, 245, 254, 0.9), rgba(187, 222, 251, 0.9));
-      border: 2px solid rgba(33, 150, 243, 0.3);
-      border-radius: 16px;
-      box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2), inset 0 0 10px rgba(0, 191, 255, 0.05);
+      background: #fefefe;
+      border: 2px solid rgba(33, 150, 243, 0.2);
+      border-radius: 18px;
+      box-shadow: 0 8px 20px rgba(0, 123, 255, 0.15);
+      text-align: center;
       overflow: hidden;
       transition: all 0.3s ease;
-      text-align: center;
-      padding-bottom: 1rem;
       position: relative;
-    }
-
-    .product::before {
-      content: '';
-      position: absolute;
-      top: -40%;
-      left: -40%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 70%);
-      transform: rotate(25deg);
-      pointer-events: none;
     }
 
     .product:hover {
       transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 12px 30px rgba(0, 150, 255, 0.4);
+      box-shadow: 0 12px 24px rgba(33, 150, 243, 0.35);
     }
 
     .product img {
       width: 100%;
       height: 200px;
       object-fit: cover;
-      border-bottom: 1px solid rgba(33, 150, 243, 0.1);
-      transition: opacity 0.3s ease;
+      cursor: pointer;
+      transition: transform 0.4s ease;
     }
 
     .product img:hover {
-      opacity: 0.95;
+      transform: scale(1.03);
     }
 
     .product h3 {
-      margin-top: 0.75rem;
-      font-size: 1.2rem;
-      color: #01579b;
+      margin: 0.75rem 0;
+    }
+
+    .product-code {
+      font-family: 'Playfair Display', serif;
       font-weight: 600;
-      letter-spacing: 0.5px;
-      text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+      font-size: 1.3rem;
+      color: #0d47a1;
+      letter-spacing: 0.8px;
     }
 
     .contact {
       padding: 2rem 5vw;
-      background: linear-gradient(to right, #b3e5fc, #e1f5fe);
+      background: linear-gradient(to right, #bbdefb, #e3f2fd);
       text-align: center;
     }
+
     .contact h2 {
       margin-bottom: 1rem;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       color: #0d47a1;
+      font-family: 'Playfair Display', serif;
     }
+
     .contact p {
-      color: #333;
       margin-bottom: 0.5rem;
+      color: #333;
     }
+
     footer {
       background: #0d47a1;
       color: white;
       text-align: center;
-      padding: 1rem 5vw;
+      padding: 1rem;
     }
+
     .modal {
       display: none;
       position: fixed;
@@ -139,11 +171,23 @@
       overflow: auto;
       background-color: rgba(0, 0, 0, 0.9);
     }
+
     .modal-content {
       margin: auto;
       display: block;
       max-width: 80%;
+      animation: zoom 0.4s ease;
     }
+
+    @keyframes zoom {
+      from {
+        transform: scale(0.5);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+
     .close {
       position: absolute;
       top: 20px;
@@ -153,28 +197,43 @@
       font-weight: bold;
       cursor: pointer;
     }
+
+    @media (max-width: 600px) {
+      .catalogue {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      #searchInput {
+        width: 80%;
+      }
+    }
   </style>
 </head>
 <body>
+
   <header data-aos="fade-down">
-    <h1>SPUNCH SANITARY WARE</h1>
+    <h1>SPUNCH</h1>
     <nav>
       <a href="#catalogue">Catalogue</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search product code..." onkeyup="filterProducts()">
+  </div>
+
   <section id="catalogue" class="catalogue">
-    <div class="product" data-aos="zoom-in"><img src="https://i.postimg.cc/1RJ4twSh/1.jpg" alt="Product 1" onclick="openModal(this)"><h3>MC-101</h3></div>
-    <div class="product" data-aos="zoom-in"><img src="https://i.postimg.cc/jd22J2qW/2.jpg" alt="Product 2" onclick="openModal(this)"><h3>MC-102</h3></div>
-    <div class="product" data-aos="zoom-in"><img src="https://i.postimg.cc/qMFRcrg1/3.jpg" alt="Product 3" onclick="openModal(this)"><h3>MC-103</h3></div>
-    <div class="product" data-aos="zoom-in"><img src="https://i.postimg.cc/zGRf0Qg8/4.jpg" alt="Product 4" onclick="openModal(this)"><h3>MC-104</h3></div>
-    <div class="product" data-aos="zoom-in"><img src="https://i.postimg.cc/mrfgqSYM/5.jpg" alt="Product 5" onclick="openModal(this)"><h3>MC-105</h3></div>
-    <div class="product" data-aos="zoom-in"><img src="https://i.postimg.cc/43VmN0fB/6.jpg" alt="Product 6" onclick="openModal(this)"><h3>MC-106</h3></div>
-    <div class="product" data-aos="zoom-in"><img src="https://i.postimg.cc/k4CDVyD9/7.jpg" alt="Product 7" onclick="openModal(this)"><h3>MC-107</h3></div>
-    <div class="product" data-aos="zoom-in"><img src="https://i.postimg.cc/26xynBBW/8.jpg" alt="Product 8" onclick="openModal(this)"><h3>MC-108</h3></div>
-    <div class="product" data-aos="zoom-in"><img src="https://i.postimg.cc/wMTv2ThG/9.jpg" alt="Product 9" onclick="openModal(this)"><h3>MC-109</h3></div>
-    <div class="product" data-aos="zoom-in"><img src="https://i.postimg.cc/C5PKQT7L/10.jpg" alt="Product 10" onclick="openModal(this)"><h3>MC-110</h3></div>
+    <div class="product" data-aos="zoom-in"><img src="https://i.postimg.cc/1RJ4twSh/1.jpg" alt="MC-101" onclick="openModal(this)"><h3><span class="product-code">MC-101</span></h3></div>
+    <div class="product" data-aos="zoom-in"><img src="https://i.postimg.cc/jd22J2qW/2.jpg" alt="MC-102" onclick="openModal(this)"><h3><span class="product-code">MC-102</span></h3></div>
+    <div class="product" data-aos="zoom-in"><img src="https://i.postimg.cc/qMFRcrg1/3.jpg" alt="MC-103" onclick="openModal(this)"><h3><span class="product-code">MC-103</span></h3></div>
+    <div class="product" data-aos="zoom-in"><img src="https://i.postimg.cc/zGRf0Qg8/4.jpg" alt="MC-104" onclick="openModal(this)"><h3><span class="product-code">MC-104</span></h3></div>
+    <div class="product" data-aos="zoom-in"><img src="https://i.postimg.cc/mrfgqSYM/5.jpg" alt="MC-105" onclick="openModal(this)"><h3><span class="product-code">MC-105</span></h3></div>
+    <div class="product" data-aos="zoom-in"><img src="https://i.postimg.cc/43VmN0fB/6.jpg" alt="MC-106" onclick="openModal(this)"><h3><span class="product-code">MC-106</span></h3></div>
+    <div class="product" data-aos="zoom-in"><img src="https://i.postimg.cc/k4CDVyD9/7.jpg" alt="MC-107" onclick="openModal(this)"><h3><span class="product-code">MC-107</span></h3></div>
+    <div class="product" data-aos="zoom-in"><img src="https://i.postimg.cc/26xynBBW/8.jpg" alt="MC-108" onclick="openModal(this)"><h3><span class="product-code">MC-108</span></h3></div>
+    <div class="product" data-aos="zoom-in"><img src="https://i.postimg.cc/wMTv2ThG/9.jpg" alt="MC-109" onclick="openModal(this)"><h3><span class="product-code">MC-109</span></h3></div>
+    <div class="product" data-aos="zoom-in"><img src="https://i.postimg.cc/C5PKQT7L/10.jpg" alt="MC-110" onclick="openModal(this)"><h3><span class="product-code">MC-110</span></h3></div>
   </section>
 
   <section id="contact" class="contact" data-aos="fade-up">
@@ -201,16 +260,25 @@
       modal.style.display = "block";
       modalImg.src = img.src;
     }
+
     function closeModal() {
       document.getElementById("imageModal").style.display = "none";
     }
+
+    function filterProducts() {
+      const input = document.getElementById("searchInput").value.toUpperCase();
+      const products = document.querySelectorAll(".product");
+      products.forEach(product => {
+        const code = product.textContent || product.innerText;
+        product.style.display = code.toUpperCase().includes(input) ? "" : "none";
+      });
+    }
   </script>
+
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 1000,
-      once: true
-    });
+    AOS.init({ duration: 1000, once: true });
   </script>
+
 </body>
 </html>
